@@ -29,11 +29,16 @@ h1 {
     font-weight: 700;
 }
 
-h1 {
+h5 {
     font-family: Poppins;
     font-weight: 500;
+    margin: 0;
 }
 
 button {
     width: 100%;
+}
+
+input:focus, button:focus {
+    outline: none;
 }
