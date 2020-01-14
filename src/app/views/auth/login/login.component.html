@@ -1,1 +1,44 @@
-<p>login works!</p>
+<div class="background"></div>
+<!-- <div class="body d-flex justify-content-center align-items-center flex-col"> -->
+<div class="body">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-4 offset-md-4">
+        <h1 class="text-center">USERS MANAGER</h1>
+        <div class="card shadow-sm mt-5" style="width: 100%;">
+          <div class="card-body">
+            <h5 class="card-title text-center">Logowanie</h5>
+            <div class="alert alert-info" role="alert">
+              <p><strong>Dane do logowania</strong></p>
+              <p>Użytkownik: user:user</p>
+              <p>Admin: admin:admin</p>
+            </div>
+            <form>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Adres E-mail" aria-label="Adres E-mail"
+                  aria-describedby="basic-addon1">
+                <small id="basic-addon1" class="form-text text-muted" *ngIf="false">We'll never share your email with
+                  anyone
+                  else.</small>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Hasło" aria-label="Hasło"
+                  aria-describedby="basic-addon2">
+                <small id="basic-addon2" class="form-text text-muted" *ngIf="false">We'll never share your email with
+                  anyone
+                  else.</small>
+              </div>
+              <button type="submit" class="btn btn-outline-dark">Zaloguj</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
