@@ -23,10 +23,6 @@ const routes: Routes = [{
       component: UserPreviewComponent
     },
     {
-      path: 'home',
-      component: HomeComponent
-    },
-    {
       path: '',
       redirectTo: 'home',
       pathMatch: 'full',
