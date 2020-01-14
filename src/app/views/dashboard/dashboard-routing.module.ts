@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { UserModComponent } from './user-mod/user-mod.component';
 import { UserPreviewComponent } from './user-preview/user-preview.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +22,10 @@ const routes: Routes = [{
     {
       path: 'user-preview',
       component: UserPreviewComponent
+    },
+    {
+      path: 'users',
+      component: UsersComponent
     },
     {
       path: '',
