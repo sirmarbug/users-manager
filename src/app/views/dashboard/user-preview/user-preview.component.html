@@ -1,1 +1,69 @@
-<p>user-preview works!</p>
+<div class="container mb-3">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h5>Podgląd użytkownika</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label for="firstNameUserMode" class="col-sm-3 col-form-label">Imię</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control-plaintext" id="firstNameUserMode"
+                aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="lastNameUserMode" class="col-sm-3 col-form-label">Nazwisko</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control-plaintext" id="lastNameUserMode"
+                aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="cityUserMode" class="col-sm-3 col-form-label">Miasto</label>
+            <div class="col-sm-9">
+              <input type="email" readonly class="form-control-plaintext" id="cityUserMode"
+                aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="countryUserMode" class="col-sm-3 col-form-label">Państwo</label>
+            <div class="col-sm-9">
+              <input type="email" readonly class="form-control-plaintext" id="countryUserMode"
+                aria-describedby="emailHelp">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="mailUserMode" class="col-sm-3 col-form-label">Adres E-mail</label>
+            <div class="col-sm-9">
+              <input type="email" readonly class="form-control-plaintext" id="mailUserMode"
+                aria-describedby="emailHelp">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h5>Pogoda</h5>
+        </div>
+        <div class="card-body">
+          <div class="password-container d-flex justify-content-center align-items-center">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Podaj hasło aby zobaczyć pogodę" aria-label="Hasło"
+                aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                  <i class="fa fa-lock" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="weather-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
