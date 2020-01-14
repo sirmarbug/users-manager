@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { GeneratePasswordPopupComponent } from '@shared/components';
 
 @Component({
   selector: 'app-user-mod',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserModComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit() {
+  }
+
+  onGeneratePasswordClick(): void {
+    const modalRef = this.modalService.open(GeneratePasswordPopupComponent);
   }
 
 }
