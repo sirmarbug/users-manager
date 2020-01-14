@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmPopupComponent } from '@shared/components';
 
 @Component({
   selector: 'app-users',
@@ -26,9 +28,15 @@ export class UsersComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit() {
+  }
+
+  onRemoveClick(): void {
+    const modalRef = this.modalService.open(ConfirmPopupComponent);
   }
 
 }

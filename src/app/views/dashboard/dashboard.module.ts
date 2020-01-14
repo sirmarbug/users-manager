@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { UserPreviewComponent } from './user-preview/user-preview.component';
 import { UserModComponent } from './user-mod/user-mod.component';
 import { UsersComponent } from './users/users.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { UsersComponent } from './users/users.component';
   declarations: [DashboardComponent, HomeComponent, UserPreviewComponent, UserModComponent, UsersComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }
