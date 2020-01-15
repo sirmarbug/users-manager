@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPreviewComponent implements OnInit {
 
+  password = '';
+  passwordValid = true;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onCheckPassword(): void {
+    this.passwordValid = !this.passwordValid;
   }
 
 }

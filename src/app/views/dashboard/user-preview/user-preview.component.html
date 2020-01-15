@@ -52,12 +52,15 @@
         <div class="card-body">
           <div class="password-container d-flex justify-content-center align-items-center">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Podaj hasło aby zobaczyć pogodę" aria-label="Hasło"
-                aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+              <div class="input-group-prepend">
+                <button class="btn" [ngClass]="{'btn-outline-danger': !passwordValid, 'btn-outline-secondary': passwordValid}" type="button" id="button-addon2" (click)="onCheckPassword()">
                   <i class="fa fa-lock" aria-hidden="true"></i>
                 </button>
+              </div>
+              <input type="password" class="form-control" [ngClass]="{'is-invalid': !passwordValid}" placeholder="Podaj hasło aby zobaczyć pogodę"
+                aria-label="Hasło" aria-describedby="basic-addon2" name="password" [(ngModel)]="password" #passwordRef="ngModel" (keyup.enter)="onCheckPassword()">
+              <div class="invalid-feedback" *ngIf="!passwordValid">
+                Hasło jest nieprawidłowe
               </div>
             </div>
           </div>
