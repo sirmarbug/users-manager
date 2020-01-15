@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +10,21 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  username = '';
+  password = '';
+
   constructor(
-    private router: Router
+    private router: Router,
+    private logger: NGXLogger
   ) { }
 
   ngOnInit() {
   }
 
-  onLoginClick(): void {
+  onSubmit(form: NgForm): void {
+    if (form.invalid) {
+      return;
+    }
     this.router.navigateByUrl('dashboard/home');
   }
 

@@ -5,7 +5,7 @@
       <div class="col-md-4 offset-md-4">
         <h1 class="text-center">USERS MANAGER</h1>
         <div class="card shadow-sm mt-5" style="width: 100%;">
-          <form>
+          <form #form="ngForm" (ngSubmit)="onSubmit(form)">
             <div class="card-header">
               <h5 class="text-center">Logowanie</h5>
             </div>
@@ -17,27 +17,37 @@
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                  <span class="input-group-text" [ngClass]="{'is-invalid': form.submitted && usernameRef.invalid}" id="basic-addon1"><i class="fa fa-user"
+                      aria-hidden="true"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="Adres E-mail" aria-label="Adres E-mail"
-                  aria-describedby="basic-addon1">
-                <small id="basic-addon1" class="form-text text-muted" *ngIf="false">We'll never share your email with
-                  anyone
-                  else.</small>
+                <input type="text" class="form-control" required
+                  [ngClass]="{'is-invalid': form.submitted && usernameRef.invalid}" placeholder="Adres E-mail"
+                  aria-label="Adres E-mail" aria-describedby="basic-addon1" name="username" [(ngModel)]="username"
+                  #usernameRef="ngModel">
+                <div class="invalid-feedback" *ngIf="form.submitted && usernameRef.invalid">
+                  Username jest wymagany
+                </div>
               </div>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                  <span class="input-group-text" [ngClass]="{'is-invalid': form.submitted && passwordRef.invalid}" id="basic-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="Hasło" aria-label="Hasło"
-                  aria-describedby="basic-addon2">
-                <small id="basic-addon2" class="form-text text-muted" *ngIf="false">We'll never share your email with
-                  anyone
-                  else.</small>
+                <input type="text" class="form-control" required minlength="8"
+                  [ngClass]="{'is-invalid': form.submitted && passwordRef.invalid}" placeholder="Hasło"
+                  aria-label="Hasło" aria-describedby="basic-addon2" name="password" [(ngModel)]="password"
+                  #passwordRef="ngModel">
+                <div class="invalid-feedback"
+                  *ngIf="form.submitted && passwordRef.invalid && passwordRef?.errors.required">
+                  Hasło jest wymagane
+                </div>
+                <div class="invalid-feedback"
+                  *ngIf="form.submitted && passwordRef.invalid && passwordRef?.errors.minlength">
+                  Hasło musi posiadać minimum 8 znaków
+                </div>
               </div>
             </div>
             <div class="card-footer text-muted">
-              <button type="button" class="btn btn-outline-dark" (click)="onLoginClick()">Zaloguj</button>
+              <button type="submit" class="btn btn-outline-dark">Zaloguj</button>
             </div>
           </form>
         </div>

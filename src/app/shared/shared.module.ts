@@ -18,7 +18,8 @@ const imports = [
   declarations,
   imports,
   exports: [
-    declarations
+    declarations,
+    imports
   ],
   entryComponents: [
     declarations
