@@ -4,6 +4,7 @@ import { ConfirmPopupComponent } from '@shared/components';
 import { UserService } from '@core/services';
 import { NGXLogger } from 'ngx-logger';
 import { User } from '@core/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -17,7 +18,8 @@ export class UsersComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private userService: UserService,
-    private logger: NGXLogger
+    private logger: NGXLogger,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,8 +29,16 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  onRemoveClick(): void {
+  onRemoveClick(id: string): void {
     const modalRef = this.modalService.open(ConfirmPopupComponent);
+  }
+
+  onEditClick(id: string): void {
+    this.router.navigateByUrl(`dashboard/user-edit/${id}`);
+  }
+
+  onPreviewClick(id: string): void {
+    this.router.navigateByUrl(`dashboard/user-preview/${id}`);
   }
 
 }

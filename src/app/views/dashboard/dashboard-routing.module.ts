@@ -24,7 +24,7 @@ const routes: Routes = [{
       component: UserModComponent
     },
     {
-      path: 'user-preview',
+      path: 'user-preview/:id',
       component: UserPreviewComponent
     },
     {
