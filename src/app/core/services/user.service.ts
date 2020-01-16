@@ -36,7 +36,7 @@ export class UserService {
     }));
   }
 
-  getUsers(): Observable<any> {
+  getUsers(): Observable<User[]> {
     return this.userCollection.valueChanges();
   }
 

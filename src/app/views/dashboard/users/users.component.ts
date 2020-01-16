@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmPopupComponent } from '@shared/components';
+import { UserService } from '@core/services';
+import { NGXLogger } from 'ngx-logger';
+import { User } from '@core/models';
 
 @Component({
   selector: 'app-users',
@@ -9,30 +12,19 @@ import { ConfirmPopupComponent } from '@shared/components';
 })
 export class UsersComponent implements OnInit {
 
-  page = 1;
-  pageSize = 5;
-
-  users = [
-    {
-      firstName: 'Adam',
-      lastName: 'Kowalski',
-      email: 'adam@o2.pl',
-      city: 'Kraków',
-      country: 'Polska'
-    }, {
-      firstName: 'Kamil',
-      lastName: 'Kozakowski',
-      email: 'kamil@o2.pl',
-      city: 'Warszawa',
-      country: 'Polska'
-    }
-  ];
+  users: User[];
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private userService: UserService,
+    private logger: NGXLogger
   ) { }
 
   ngOnInit() {
+    this.userService.getUsers().subscribe((users: User[]) => {
+      this.logger.debug(users);
+      this.users = users;
+    });
   }
 
   onRemoveClick(): void {
