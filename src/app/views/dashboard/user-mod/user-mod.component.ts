@@ -5,7 +5,7 @@ import { User } from '@core/models';
 import { NGXLogger } from 'ngx-logger';
 import { NgForm } from '@angular/forms';
 import { UserService } from '@core/services';
-import { WeatherService } from '@core/services/weather.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-mod',
@@ -14,17 +14,19 @@ import { WeatherService } from '@core/services/weather.service';
 })
 export class UserModComponent implements OnInit {
 
+  userId = '';
   user: User;
 
   constructor(
     private modalService: NgbModal,
     private logger: NGXLogger,
     private userService: UserService,
-    private weatherService: WeatherService
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.user = new User();
+    this.userId = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   onGeneratePasswordClick(): void {
@@ -40,11 +42,18 @@ export class UserModComponent implements OnInit {
       .catch(err => console.error(err));
   }
 
-  onSubmit(form: NgForm): void {
+  onCreateUserClick(form: NgForm): void {
     if (form.invalid) {
       return;
     }
     this.logger.debug(this.user);
+    this.userService.addUser(this.user)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => console.error(err)
+      );
   }
 
 }

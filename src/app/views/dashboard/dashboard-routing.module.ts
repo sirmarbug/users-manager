@@ -20,6 +20,10 @@ const routes: Routes = [{
       component: UserModComponent
     },
     {
+      path: 'user-edit/:id',
+      component: UserModComponent
+    },
+    {
       path: 'user-preview',
       component: UserPreviewComponent
     },

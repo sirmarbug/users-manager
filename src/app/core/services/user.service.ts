@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable, from, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { User } from '@core/models';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,10 @@ export class UserService {
     return this.userCollection.doc(id).valueChanges();
   }
 
-  addUser(): Observable<any> {
-    return from(this.userCollection.add({ test: 'test' }))
+  addUser(user: User): Observable<any> {
+    const newUser = { ...user };
+    delete newUser.id;
+    return from(this.userCollection.add(newUser))
       .pipe(
         switchMap(_ => {
           _.update('id', _.id);
