@@ -36,6 +36,15 @@ export class UserService {
     }));
   }
 
+  checkMail(mail: string): Observable<boolean> {
+    return this.db.collection('users', ref => ref.where('mail', '==', mail)).valueChanges().pipe(map((_: User[]) => {
+      if (_.length < 1) {
+        return true;
+      }
+      return false;
+    }));
+  }
+
   getUsers(): Observable<User[]> {
     return this.userCollection.valueChanges();
   }
