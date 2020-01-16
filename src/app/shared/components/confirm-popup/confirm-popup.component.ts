@@ -14,4 +14,8 @@ export class ConfirmPopupComponent implements OnInit {
   ngOnInit() {
   }
 
+  onConfirmClick() {
+    this.activeModal.close(true);
+  }
+
 }
