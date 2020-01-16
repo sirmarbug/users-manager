@@ -27,6 +27,13 @@ export class UserModComponent implements OnInit {
   ngOnInit() {
     this.user = new User();
     this.userId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.userId) {
+      this.userService.getUserById(this.userId).subscribe(
+        (user: User) => {
+          this.user = user;
+        }
+      );
+    }
   }
 
   onGeneratePasswordClick(): void {
@@ -52,6 +59,17 @@ export class UserModComponent implements OnInit {
         res => {
           console.log(res);
         },
+        err => console.error(err)
+      );
+  }
+
+  onEditUserClick(form: NgForm): void {
+    if (form.invalid) {
+      return;
+    }
+    this.logger.debug(this.user);
+    this.userService.updateUser(this.user)
+      .subscribe(() => {},
         err => console.error(err)
       );
   }

@@ -56,8 +56,8 @@ export class UserService {
       );
   }
 
-  updateUser(user: any): Observable<any> {
-    return from(this.userCollection.doc(user.id).update({test: 'test2'}));
+  updateUser(user: any): Observable<void> {
+    return from(this.userCollection.doc(user.id).update(user));
   }
 
   deleteUser(id: string): Observable<void> {

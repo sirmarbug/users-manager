@@ -108,7 +108,7 @@
           </div>
           <div class="card-footer text-muted">
             <button type="button" class="btn btn-outline-dark" *ngIf="!userId" (click)="onCreateUserClick(form)">Utwórz</button>
-            <button type="button" class="btn btn-outline-dark" *ngIf="userId">Edytuj</button>
+            <button type="button" class="btn btn-outline-dark" *ngIf="userId" (click)="onEditUserClick(form)">Edytuj</button>
           </div>
         </form>
       </div>
