@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   goToMyProfile() {
-    this.router.navigateByUrl('dashboard/user-preview');
+    this.router.navigateByUrl(`dashboard/user-preview/${this.userService.currentUser.id}`);
   }
 
 }
