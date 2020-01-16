@@ -29,6 +29,15 @@ export class UserModComponent implements OnInit {
 
   onGeneratePasswordClick(): void {
     const modalRef = this.modalService.open(GeneratePasswordPopupComponent);
+    modalRef.result
+      .then(res => {
+        if (!res) {
+          return;
+        }
+        this.user.password = res;
+        this.user.repeatPassword = res;
+      })
+      .catch(err => console.error(err));
   }
 
   onSubmit(form: NgForm): void {
