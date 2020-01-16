@@ -4,6 +4,8 @@ import { GeneratePasswordPopupComponent } from '@shared/components';
 import { User } from '@core/models';
 import { NGXLogger } from 'ngx-logger';
 import { NgForm } from '@angular/forms';
+import { UserService } from '@core/services';
+import { WeatherService } from '@core/services/weather.service';
 
 @Component({
   selector: 'app-user-mod',
@@ -16,7 +18,9 @@ export class UserModComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private logger: NGXLogger
+    private logger: NGXLogger,
+    private userService: UserService,
+    private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
