@@ -15,6 +15,7 @@ export class UserPreviewComponent implements OnInit {
   passwordValid = true;
   userId = '';
   user: User;
+  weather = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,7 +33,23 @@ export class UserPreviewComponent implements OnInit {
   }
 
   onCheckPassword(): void {
-    this.passwordValid = !this.passwordValid;
+    this.userService.login(this.userService.currentUser.mail, this.password)
+      .subscribe(
+        res => {
+          if (!res) {
+            this.passwordValid = false;
+            return;
+          }
+          this.logger.debug('login', res);
+          this.passwordValid = true;
+          this.weather = true;
+        },
+        err => {
+          this.logger.error(err);
+          this.weather = false;
+          this.passwordValid = false;
+        }
+      );
   }
 
 }
