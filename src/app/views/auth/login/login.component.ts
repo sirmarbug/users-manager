@@ -10,7 +10,7 @@ import { NGXLogger } from 'ngx-logger';
 })
 export class LoginComponent implements OnInit {
 
-  username = '';
+  mail = '';
   password = '';
 
   constructor(
