@@ -40,8 +40,8 @@ export class UserService {
     return this.userCollection.valueChanges();
   }
 
-  getUserById(id: string): Observable<any> {
-    return this.userCollection.doc(id).valueChanges();
+  getUserById(id: string): Observable<User> {
+    return this.userCollection.doc(id).valueChanges().pipe(map((res: User) => res));
   }
 
   addUser(user: User): Observable<any> {
@@ -60,7 +60,7 @@ export class UserService {
     return from(this.userCollection.doc(user.id).update({test: 'test2'}));
   }
 
-  deleteUser(id: string): Observable<any> {
+  deleteUser(id: string): Observable<void> {
     return from(this.userCollection.doc(id).delete());
   }
 }
