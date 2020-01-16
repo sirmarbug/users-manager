@@ -17,6 +17,7 @@ export class UserModComponent implements OnInit {
   userId = '';
   user: User;
   mailValid = false;
+  check = false;
 
   constructor(
     private modalService: NgbModal,
@@ -81,6 +82,7 @@ export class UserModComponent implements OnInit {
     }
     this.userService.checkMail(this.user.mail).subscribe((valid: boolean) => {
       this.mailValid = valid;
+      this.check = true;
     });
   }
 
