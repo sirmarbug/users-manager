@@ -13,7 +13,7 @@
               <div class="alert alert-info" role="alert">
                 <p><strong>Dane do logowania</strong></p>
                 <p>Użytkownik: user:user</p>
-                <p>Admin: admin:admin</p>
+                <p>Admin: admin:admin123</p>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -21,7 +21,7 @@
                       aria-hidden="true"></i></span>
                 </div>
                 <input type="text" class="form-control" required
-                  [ngClass]="{'is-invalid': form.submitted && usernameRef.invalid}" placeholder="Adres E-mail"
+                  [ngClass]="{'is-invalid': form.submitted && usernameRef.invalid}" placeholder="Username"
                   aria-label="Adres E-mail" aria-describedby="basic-addon1" name="username" [(ngModel)]="username"
                   #usernameRef="ngModel">
                 <div class="invalid-feedback" *ngIf="form.submitted && usernameRef.invalid">
@@ -32,7 +32,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" [ngClass]="{'is-invalid': form.submitted && passwordRef.invalid}" id="basic-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
                 </div>
-                <input type="text" class="form-control" required minlength="8"
+                <input type="password" class="form-control" required minlength="8"
                   [ngClass]="{'is-invalid': form.submitted && passwordRef.invalid}" placeholder="Hasło"
                   aria-label="Hasło" aria-describedby="basic-addon2" name="password" [(ngModel)]="password"
                   #passwordRef="ngModel">
