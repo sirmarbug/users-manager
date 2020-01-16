@@ -31,6 +31,17 @@ export class UsersComponent implements OnInit {
 
   onRemoveClick(id: string): void {
     const modalRef = this.modalService.open(ConfirmPopupComponent);
+    modalRef.result.then(
+      res => {
+        if (!res) {
+          return;
+        }
+        this.userService.deleteUser(id).subscribe(
+          () => {},
+          err => this.logger.error(err)
+        );
+      }
+    );
   }
 
   onEditClick(id: string): void {
