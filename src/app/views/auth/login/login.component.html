@@ -10,6 +10,9 @@
               <h5 class="text-center">Logowanie</h5>
             </div>
             <div class="card-body">
+              <div class="alert alert-danger" role="alert" *ngIf="error">
+                Logowanie nie powiodło się
+              </div>
               <div class="alert alert-info" role="alert">
                 <p><strong>Dane do logowania</strong></p>
                 <p>Użytkownik: user@domain.com:user</p>
@@ -17,8 +20,8 @@
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" [ngClass]="{'is-invalid': form.submitted && mailRef.invalid}" id="basic-addon1"><i class="fa fa-user"
-                      aria-hidden="true"></i></span>
+                  <span class="input-group-text" [ngClass]="{'is-invalid': form.submitted && mailRef.invalid}"
+                    id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
                 </div>
                 <input type="text" class="form-control" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                   [ngClass]="{'is-invalid': form.submitted && mailRef.invalid}" placeholder="Adres E-mail"
@@ -33,7 +36,8 @@
               </div>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" [ngClass]="{'is-invalid': form.submitted && passwordRef.invalid}" id="basic-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                  <span class="input-group-text" [ngClass]="{'is-invalid': form.submitted && passwordRef.invalid}"
+                    id="basic-addon1"><i class="fa fa-lock" aria-hidden="true"></i></span>
                 </div>
                 <input type="password" class="form-control" required minlength="8"
                   [ngClass]="{'is-invalid': form.submitted && passwordRef.invalid}" placeholder="Hasło"
