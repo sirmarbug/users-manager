@@ -12,7 +12,8 @@ export class ApiBuilder {
     const concat = '&';
     const query = {
       location,
-      format: 'json'
+      format: 'json',
+      u: 'C'
     };
     const oauth = {
       oauth_consumer_key: consumerKey,

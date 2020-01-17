@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { UserService } from '@core/services';
-import { User } from '@core/models';
+import { User, YahooResponse, WeatherToday } from '@core/models';
 import { WeatherService } from '@core/services/weather.service';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-preview',
@@ -17,6 +18,7 @@ export class UserPreviewComponent implements OnInit {
   userId = '';
   user: User = new User();
   weather = false;
+  weatherToday: WeatherToday = new WeatherToday();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,23 +37,21 @@ export class UserPreviewComponent implements OnInit {
   }
 
   onCheckPassword(): void {
+
     this.userService.login(this.userService.currentUser.mail, this.password)
-      .subscribe(
-        res => {
-          if (!res) {
-            this.passwordValid = false;
-            return;
-          }
-          this.logger.debug('login', res);
-          this.passwordValid = true;
-          this.weather = true;
-        },
-        err => {
-          this.logger.error(err);
-          this.weather = false;
+      .pipe(mergeMap(_ => {
+        if (!_) {
           this.passwordValid = false;
+          return;
         }
-      );
+        this.logger.debug('login', _);
+        this.passwordValid = true;
+        this.weather = true;
+        return this.weatherService.getWeather('kielce');
+      })).subscribe((res: YahooResponse) => {
+        this.weatherToday = new WeatherToday(res.current_observation.condition.temperature, res.current_observation.atmosphere.humidity);
+        this.logger.debug(this.weatherToday);
+      });
   }
 
 }

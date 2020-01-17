@@ -50,7 +50,7 @@
           <h5>Pogoda</h5>
         </div>
         <div class="card-body">
-          <div class="password-container d-flex justify-content-center align-items-center" *ngIf="weather">
+          <div class="password-container d-flex justify-content-center align-items-center" *ngIf="!weather">
             <div class="input-group">
               <div class="input-group-prepend">
                 <button class="btn" [ngClass]="{'btn-outline-danger': !passwordValid, 'btn-outline-secondary': passwordValid}" type="button" id="button-addon2" (click)="onCheckPassword()">
@@ -64,8 +64,8 @@
               </div>
             </div>
           </div>
-          <div class="weather-container" *ngIf="!weather">
-            <app-weather-today [city]="'Kielce'" [temp]="4" [humidity]="30"></app-weather-today>
+          <div class="weather-container" *ngIf="weather">
+            <app-weather-today [city]="user.city" [temp]="weatherToday.temperature" [humidity]="weatherToday.humidity"></app-weather-today>
             <app-weather-other-day></app-weather-other-day>
           </div>
         </div>
