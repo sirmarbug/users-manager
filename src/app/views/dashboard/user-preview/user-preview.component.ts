@@ -14,7 +14,7 @@ export class UserPreviewComponent implements OnInit {
   password = '';
   passwordValid = true;
   userId = '';
-  user: User;
+  user: User = new User();
   weather = false;
 
   constructor(
