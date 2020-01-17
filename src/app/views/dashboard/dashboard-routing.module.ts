@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { UserModComponent } from './user-mod/user-mod.component';
 import { UserPreviewComponent } from './user-preview/user-preview.component';
 import { UsersComponent } from './users/users.component';
+import { AdminGuard } from '@core/guards/admin.guard';
 
 const routes: Routes = [{
   path: '',
@@ -17,11 +18,13 @@ const routes: Routes = [{
     },
     {
       path: 'user-create',
-      component: UserModComponent
+      component: UserModComponent,
+      canActivate: [AdminGuard]
     },
     {
       path: 'user-edit/:id',
-      component: UserModComponent
+      component: UserModComponent,
+      canActivate: [AdminGuard]
     },
     {
       path: 'user-preview/:id',
@@ -29,7 +32,8 @@ const routes: Routes = [{
     },
     {
       path: 'users',
-      component: UsersComponent
+      component: UsersComponent,
+      canActivate: [AdminGuard]
     },
     {
       path: '',
