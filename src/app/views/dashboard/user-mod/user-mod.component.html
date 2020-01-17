@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card shadow-sm">
-        <form #form="ngForm" (ngSubmit)="onSubmit(form)" *ngIf="!userId">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
           <div class="card-header">
             <h5 *ngIf="!userId">Dodaj użytkownika</h5>
             <h5 *ngIf="userId"> Edytuj użytkownika</h5>
