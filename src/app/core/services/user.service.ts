@@ -22,6 +22,10 @@ export class UserService {
     private logger: NGXLogger,
   ) {
     this.userCollection = this.db.collection('users');
+    const session = localStorage.getItem('session');
+    if (session) {
+      this.session = JSON.parse(session);
+    }
   }
 
   login(mail: string, password: string): Observable<boolean> {
@@ -32,8 +36,14 @@ export class UserService {
       }
       this.logger.debug('Session:', _[0]);
       this.session = _[0];
+      localStorage.setItem('session', JSON.stringify(this.session));
       return true;
     }));
+  }
+
+  logout(): void {
+    localStorage.removeItem('session');
+    this.session = new User();
   }
 
   checkMail(mail: string): Observable<boolean> {
