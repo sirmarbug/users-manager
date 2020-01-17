@@ -1,0 +1,26 @@
+.weather-other-day {
+    margin: 1.25rem 0 0 0;
+    height: 100%;
+
+    .weather-day {
+        border-right: 1px solid rgba(0,0,0,.125);
+        border-left: 1px solid rgba(0,0,0,.125);
+        height: 100%;
+        span {
+            display: block;
+
+            &.legend {
+                color: rgba(0,0,0,.3);
+            }
+        }
+
+        &:first-child {
+            border-left: none;
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+}
+

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { UserService } from '@core/services';
 import { User } from '@core/models';
+import { WeatherService } from '@core/services/weather.service';
 
 @Component({
   selector: 'app-user-preview',
@@ -20,7 +21,8 @@ export class UserPreviewComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private logger: NGXLogger,
-    private userService: UserService
+    private userService: UserService,
+    private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
