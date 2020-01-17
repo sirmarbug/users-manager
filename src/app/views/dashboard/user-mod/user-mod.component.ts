@@ -55,10 +55,10 @@ export class UserModComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.logger.debug(this.user);
     this.userService.addUser(this.user)
       .subscribe(
         res => {
+          form.resetForm();
           console.log(res);
         },
         err => console.error(err)
@@ -69,7 +69,6 @@ export class UserModComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.logger.debug(this.user);
     this.userService.updateUser(this.user)
       .subscribe(() => {},
         err => console.error(err)
@@ -89,6 +88,7 @@ export class UserModComponent implements OnInit {
   onSubmit(form: NgForm): void {
     if (!this.userId) {
       this.onCreateUserClick(form);
+      return;
     }
     this.onEditUserClick(form);
   }
