@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Forecast } from '@core/models';
 
 @Component({
   selector: 'app-weather-other-day',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./weather-other-day.component.scss']
 })
 export class WeatherOtherDayComponent implements OnInit {
+
+  @Input() forecasts: Forecast[] = new Array<Forecast>();
 
   constructor() { }
 
