@@ -10,3 +10,14 @@
         width: 100%;
     }
 }
+
+.btn-option {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 1.25rem;
+    cursor: pointer;
+
+    a, a:hover, a:active, a:focus {
+        color: #222;
+    }
+}

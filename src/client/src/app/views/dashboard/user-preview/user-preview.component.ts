@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { UserService } from '@core/services';
 import { User, YahooResponse, WeatherToday, Forecast } from '@core/models';
 import { WeatherService } from '@core/services/weather.service';
 import { mergeMap } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmPopupComponent } from '@shared/components';
 
 @Component({
   selector: 'app-user-preview',
@@ -25,7 +27,9 @@ export class UserPreviewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private logger: NGXLogger,
     private userService: UserService,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private router: Router,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -33,7 +37,7 @@ export class UserPreviewComponent implements OnInit {
     this.userService.getUserById(this.userId)
       .subscribe((res: User) => {
         this.logger.debug(res);
-        this.user = res;
+        this.user = {...res};
       });
   }
 
@@ -53,6 +57,27 @@ export class UserPreviewComponent implements OnInit {
         this.forecasts = res.forecasts.slice(0, 3);
         this.weather = true;
       });
+  }
+
+  onEditClick(): void {
+    this.router.navigateByUrl(`dashboard/user-edit/${this.user.id}`);
+  }
+
+  onRemoveClick(): void {
+    const modalRef = this.modalService.open(ConfirmPopupComponent);
+    modalRef.result.then(
+      res => {
+        if (!res) {
+          return;
+        }
+        this.userService.deleteUser(this.user.id).subscribe(
+          () => {
+            this.router.navigateByUrl('dashboard/users');
+          },
+          err => this.logger.error(err)
+        );
+      }
+    );
   }
 
 }
