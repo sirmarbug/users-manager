@@ -24,7 +24,7 @@ export class UserPreviewComponent implements OnInit {
   user: User = new User();
   weather = false;
   weatherToday: WeatherToday = new WeatherToday();
-  forecasts: Forecast[] = new Array<Forecast>();
+  forecasts: Forecast[] = new Array < Forecast > ();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,14 +34,16 @@ export class UserPreviewComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.userService.getUserById(this.userId)
       .subscribe((res: User) => {
         this.logger.debug(res);
-        this.user = {...res};
+        this.user = {
+          ...res
+        };
       });
   }
 
@@ -89,14 +91,16 @@ export class UserPreviewComponent implements OnInit {
     const doc = new jsPDF();
     const userData = window.document.getElementById('user-data');
     const userWeather = window.document.getElementById('user-weather');
-    html2canvas(userData).then((canvas) => {
-      const img = canvas.toDataURL('image/png');
-      doc.addImage(img, 'PNG', 0, 0, 200, 100);
-      html2canvas(userWeather).then((can) => {
-        const img2 = can.toDataURL('image/png');
-        doc.addImage(img2, 'PNG', 0, 100, 200, 100);
+    Promise.all([html2canvas(userData), html2canvas(userWeather)])
+      .then(canvas => {
+        let hight = 0;
+        canvas.forEach(img => {
+          doc.addImage(img, 'PNG', 0, hight, 200, 100);
+          hight += 100;
+        });
+      })
+      .finally(() => {
         doc.save(`${this.user.firstName}-${this.user.lastName}.pdf`);
-    });
-  });
+      });
   }
 }
