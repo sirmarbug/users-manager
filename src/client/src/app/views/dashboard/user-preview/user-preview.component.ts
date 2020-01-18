@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { UserService } from '@core/services';
-import { User, YahooResponse, WeatherToday, Forecast } from '@core/models';
+import { User, YahooResponse, WeatherToday, Forecast, Role } from '@core/models';
 import { WeatherService } from '@core/services/weather.service';
 import { mergeMap } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,6 +25,10 @@ export class UserPreviewComponent implements OnInit {
   weather = false;
   weatherToday: WeatherToday = new WeatherToday();
   forecasts: Forecast[] = new Array < Forecast > ();
+
+  get isAdmin(): boolean {
+    return this.userService.currentUser.role === Role.ADMIN;
+  }
 
   constructor(
     private activatedRoute: ActivatedRoute,
