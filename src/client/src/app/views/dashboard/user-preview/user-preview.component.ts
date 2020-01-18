@@ -50,7 +50,7 @@ export class UserPreviewComponent implements OnInit {
         return this.weatherService.getWeather(this.user.city);
       })).subscribe((res: YahooResponse) => {
         this.weatherToday = new WeatherToday(res.current_observation.condition.temperature, res.current_observation.atmosphere.humidity);
-        this.forecasts = res.forecasts.slice(1, 4);
+        this.forecasts = res.forecasts.slice(0, 3);
         this.weather = true;
       });
   }

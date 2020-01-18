@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Forecast } from '@core/models';
+import { DaysWeekConvert } from '@core/utils/days-week-convert';
 
 @Component({
   selector: 'app-weather-other-day',
@@ -13,6 +14,10 @@ export class WeatherOtherDayComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  convertDay(value: string): string {
+    return DaysWeekConvert.toPL(value);
   }
 
 }
