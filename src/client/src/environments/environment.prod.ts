@@ -8,5 +8,6 @@ export const environment = {
     storageBucket: 'finansjer.appspot.com',
     messagingSenderId: '774679705638',
     appId: '1:774679705638:web:556680093cc53f46'
-  }
+  },
+  mailApi: 'https://users-manger.herokuapp.com/sendMail'
 };

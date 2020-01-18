@@ -15,7 +15,7 @@ const sendMail = (to, subject, text) => {
     to,
     subject,
     text,
-    html: `<center><h1>USERS MANAGER</h1><h2>Twoje nowe hasło to</h2><strong>${text}</strong><center>`,
+    html: `<center><h1>USERS MANAGER</h1><h2>Twoje hasło to</h2><strong>${text}</strong><center>`,
   };
   sgMail.send(msg);
 }

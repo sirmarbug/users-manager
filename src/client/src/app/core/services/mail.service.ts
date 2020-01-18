@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
+import { environment } from '@env';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,10 @@ export class MailService {
   ) { }
 
   sendMail(to: string, subject: string, text: string): Observable<any> {
-    return from(this.http.post('http://localhost:3000/sendMail', {
+    return from(this.http.post(environment.mailApi, {
       to,
       subject,
       text
-    }, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
     }));
   }
 }

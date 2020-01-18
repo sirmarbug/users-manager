@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from '@core/services';
 import { ActivatedRoute } from '@angular/router';
 import { MailService } from '@core/services/mail.service';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-mod',
@@ -19,6 +20,7 @@ export class UserModComponent implements OnInit {
   user: User;
   mailValid = false;
   check = false;
+  changedPassword = false;
 
   constructor(
     private modalService: NgbModal,
@@ -49,8 +51,7 @@ export class UserModComponent implements OnInit {
         }
         this.user.password = res;
         this.user.repeatPassword = res;
-        this.mailService.sendMail('sirmarbug@gmail.com', 'Temat', `Moja aplikacja wysłała pierwszego maila. A to jest nowe hasło: ${res}`)
-          .subscribe(res => console.log(res));
+        this.changedPassword = true;
       })
       .catch(err => console.error(err));
   }
@@ -59,8 +60,13 @@ export class UserModComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.userService.addUser(this.user)
-      .subscribe(
+
+    this.mailService.sendMail(
+      this.user.mail, 'Nowe hasło', this.user.password).pipe(
+        mergeMap(_ => {
+          return this.userService.addUser(this.user);
+        })
+      ).subscribe(
         res => {
           form.resetForm();
           console.log(res);
@@ -72,6 +78,11 @@ export class UserModComponent implements OnInit {
   onEditUserClick(form: NgForm): void {
     if (form.invalid) {
       return;
+    }
+    if (this.changedPassword) {
+      this.mailService.sendMail(
+        this.user.mail, 'Nowe hasło', this.user.password)
+          .subscribe(res => console.log(res));
     }
     this.userService.updateUser(this.user)
       .subscribe(() => {},
