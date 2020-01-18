@@ -26,7 +26,6 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users: User[]) => {
-      this.logger.debug(users);
       this.users = users;
     });
   }

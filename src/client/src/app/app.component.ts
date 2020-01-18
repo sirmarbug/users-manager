@@ -11,8 +11,5 @@ export class AppComponent {
 
   constructor(
     private logger: NGXLogger
-  ) {
-    this.logger.debug('Your log message goes here');
-    this.logger.debug('Multiple', 'Argument', 'support');
-  }
+  ) {}
 }

@@ -34,7 +34,6 @@ export class UserService {
       if (_.length < 1) {
         return false;
       }
-      this.logger.debug('Session:', _[0]);
       this.session = _[0];
       localStorage.setItem('session', JSON.stringify(this.session));
       return true;

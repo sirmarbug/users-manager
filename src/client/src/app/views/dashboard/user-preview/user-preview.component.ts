@@ -40,7 +40,6 @@ export class UserPreviewComponent implements OnInit {
     this.userId = this.activatedRoute.snapshot.paramMap.get('id');
     this.userService.getUserById(this.userId)
       .subscribe((res: User) => {
-        this.logger.debug(res);
         this.user = {
           ...res
         };
@@ -55,7 +54,6 @@ export class UserPreviewComponent implements OnInit {
           this.passwordValid = false;
           return;
         }
-        this.logger.debug('login', _);
         this.passwordValid = true;
         return this.weatherService.getWeather(this.user.city);
       })).subscribe((res: YahooResponse) => {
