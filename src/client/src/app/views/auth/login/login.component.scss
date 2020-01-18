@@ -36,3 +36,9 @@ input:focus, button:focus {
 .input-group-text.is-invalid {
     border-color: #dc3545;
 }
+
+@media (max-width: 1024px) {
+    #login-data {
+        display: none;
+    }
+}
