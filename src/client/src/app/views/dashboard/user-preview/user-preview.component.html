@@ -6,12 +6,13 @@
           <div class="d-flex justify-content-between align-items-center">
             <h5>Podgląd użytkownika</h5>
             <div class="btn-option">
+              <a class="mr-2" placement="bottom" ngbTooltip="Pobierz wizytówkę" (click)="onPdfDownload()"><i class="fa fa-file-text" aria-hidden="true"></i></a>
               <a class="mr-2" placement="bottom" ngbTooltip="Edytuj użytkownika" (click)="onEditClick()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-              <a placement="bottom" ngbTooltip="Usuń użytkownika"><i class="fa fa-trash-o" aria-hidden="true" (click)="onRemoveClick()"></i></a>
+              <a placement="bottom" ngbTooltip="Usuń użytkownika" (click)="onRemoveClick()"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" id="user-data">
           <div class="form-group row">
             <label for="firstNameUserMode" class="col-sm-3 col-form-label">Imię</label>
             <div class="col-sm-9">
@@ -55,7 +56,7 @@
         <div class="card-header">
           <h5>Pogoda</h5>
         </div>
-        <div class="card-body">
+        <div class="card-body" id="user-weather">
           <div class="password-container d-flex justify-content-center align-items-center" *ngIf="!weather">
             <div class="input-group">
               <div class="input-group-prepend">

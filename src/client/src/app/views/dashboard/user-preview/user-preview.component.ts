@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { UserService } from '@core/services';
@@ -8,6 +8,8 @@ import { mergeMap } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmPopupComponent } from '@shared/components';
 import { ToastrService } from 'ngx-toastr';
+import * as jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-user-preview',
@@ -83,4 +85,18 @@ export class UserPreviewComponent implements OnInit {
     );
   }
 
+  onPdfDownload(): void {
+    const doc = new jsPDF();
+    const userData = window.document.getElementById('user-data');
+    const userWeather = window.document.getElementById('user-weather');
+    html2canvas(userData).then((canvas) => {
+      const img = canvas.toDataURL('image/png');
+      doc.addImage(img, 'PNG', 0, 0, 200, 100);
+      html2canvas(userWeather).then((can) => {
+        const img2 = can.toDataURL('image/png');
+        doc.addImage(img2, 'PNG', 0, 100, 200, 100);
+        doc.save(`${this.user.firstName}-${this.user.lastName}.pdf`);
+    });
+  });
+  }
 }
