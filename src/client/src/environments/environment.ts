@@ -18,7 +18,7 @@ export const environment = {
     consumerKey: 'dj0yJmk9QlpmVEhKOTJhb005JmQ9WVdrOVUzZFZXV2xUTXpJbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTBh',
     consumerSecret: 'e3971839642e62983a501fed61279233558cb9a1'
   },
-  mailApi: 'http://localhost:3000/sendMail'
+  mailApi: 'https://users-manger.herokuapp.com/sendMail'
 };
 
 /*
