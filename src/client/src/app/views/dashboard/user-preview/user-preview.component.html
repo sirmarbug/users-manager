@@ -1,0 +1,75 @@
+<div class="container mb-3">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h5>Podgląd użytkownika</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group row">
+            <label for="firstNameUserMode" class="col-sm-3 col-form-label">Imię</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control-plaintext" id="firstNameUserMode"
+                aria-describedby="emailHelp" [value]="user.firstName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="lastNameUserMode" class="col-sm-3 col-form-label">Nazwisko</label>
+            <div class="col-sm-9">
+              <input type="text" readonly class="form-control-plaintext" id="lastNameUserMode"
+                aria-describedby="emailHelp" [value]="user.lastName">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="cityUserMode" class="col-sm-3 col-form-label">Miasto</label>
+            <div class="col-sm-9">
+              <input type="email" readonly class="form-control-plaintext" id="cityUserMode"
+                aria-describedby="emailHelp" [value]="user.city">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="countryUserMode" class="col-sm-3 col-form-label">Państwo</label>
+            <div class="col-sm-9">
+              <input type="email" readonly class="form-control-plaintext" id="countryUserMode"
+                aria-describedby="emailHelp" [value]="user.country">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="mailUserMode" class="col-sm-3 col-form-label">Adres E-mail</label>
+            <div class="col-sm-9">
+              <input type="email" readonly class="form-control-plaintext" id="mailUserMode"
+                aria-describedby="emailHelp" [value]="user.mail">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h5>Pogoda</h5>
+        </div>
+        <div class="card-body">
+          <div class="password-container d-flex justify-content-center align-items-center" *ngIf="!weather">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button class="btn" [ngClass]="{'btn-outline-danger': !passwordValid, 'btn-outline-secondary': passwordValid}" type="button" id="button-addon2" (click)="onCheckPassword()">
+                  <i class="fa fa-lock" aria-hidden="true"></i>
+                </button>
+              </div>
+              <input type="password" class="form-control" [ngClass]="{'is-invalid': !passwordValid}" placeholder="Podaj hasło aby zobaczyć pogodę"
+                aria-label="Hasło" aria-describedby="basic-addon2" name="password" [(ngModel)]="password" #passwordRef="ngModel" (keyup.enter)="onCheckPassword()">
+              <div class="invalid-feedback" *ngIf="!passwordValid">
+                Hasło jest nieprawidłowe
+              </div>
+            </div>
+          </div>
+          <div class="weather-container" *ngIf="weather">
+            <app-weather-today [city]="user.city" [temp]="weatherToday.temperature" [humidity]="weatherToday.humidity"></app-weather-today>
+            <app-weather-other-day [forecasts]="forecasts"></app-weather-other-day>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

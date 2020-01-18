@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h5>Strona główna</h5>
+        </div>
+        <div class="card-body">
+        <p class="card-text">Jesteś zalogowany jako: {{ name }}</p>
+        <p class="card-text">Masz prawnienia: {{ role }}</p>
+        <button type="button" class="btn btn-outline-dark" (click)="goToMyProfile()">Zobacz swój profil</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
