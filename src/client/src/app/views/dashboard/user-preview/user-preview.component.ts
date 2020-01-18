@@ -7,6 +7,7 @@ import { WeatherService } from '@core/services/weather.service';
 import { mergeMap } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmPopupComponent } from '@shared/components';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-preview',
@@ -29,7 +30,8 @@ export class UserPreviewComponent implements OnInit {
     private userService: UserService,
     private weatherService: WeatherService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -73,8 +75,9 @@ export class UserPreviewComponent implements OnInit {
         this.userService.deleteUser(this.user.id).subscribe(
           () => {
             this.router.navigateByUrl('dashboard/users');
+            this.toastr.success('Użytkownik został usunięty');
           },
-          err => this.logger.error(err)
+          err => this.toastr.error('Coś poszło nie tak')
         );
       }
     );

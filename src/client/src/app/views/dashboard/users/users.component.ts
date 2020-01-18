@@ -5,6 +5,7 @@ import { UserService } from '@core/services';
 import { NGXLogger } from 'ngx-logger';
 import { User } from '@core/models';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-users',
@@ -19,7 +20,8 @@ export class UsersComponent implements OnInit {
     private modalService: NgbModal,
     private userService: UserService,
     private logger: NGXLogger,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -37,8 +39,10 @@ export class UsersComponent implements OnInit {
           return;
         }
         this.userService.deleteUser(id).subscribe(
-          () => {},
-          err => this.logger.error(err)
+          () => {
+            this.toastr.success('Użytkownik został usunięty');
+          },
+          err => this.toastr.error('Coś poszło nie tak')
         );
       }
     );

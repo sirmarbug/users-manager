@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { NGXLogger } from 'ngx-logger';
 import { UserService } from '@core/services';
 import { User } from 'firebase';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private logger: NGXLogger,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -39,6 +41,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('dashboard/home');
         },
         err => {
+          this.toastr.error('Coś poszło nie tak');
           this.logger.error(err);
           this.error = true;
         }

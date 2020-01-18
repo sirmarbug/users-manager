@@ -8,6 +8,7 @@ import { UserService } from '@core/services';
 import { ActivatedRoute } from '@angular/router';
 import { MailService } from '@core/services/mail.service';
 import { mergeMap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-mod',
@@ -27,7 +28,8 @@ export class UserModComponent implements OnInit {
     private logger: NGXLogger,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private mailService: MailService
+    private mailService: MailService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class UserModComponent implements OnInit {
         this.user.repeatPassword = res;
         this.changedPassword = true;
       })
-      .catch(err => console.error(err));
+      .catch(err => this.toastr.error('Coś poszło nie tak'));
   }
 
   onCreateUserClick(form: NgForm): void {
@@ -69,9 +71,9 @@ export class UserModComponent implements OnInit {
       ).subscribe(
         res => {
           form.resetForm();
-          console.log(res);
+          this.toastr.success('Dodano użytkownika');
         },
-        err => console.error(err)
+        err => this.toastr.error('Coś poszło nie tak')
       );
   }
 
@@ -85,8 +87,10 @@ export class UserModComponent implements OnInit {
           .subscribe(res => console.log(res));
     }
     this.userService.updateUser(this.user)
-      .subscribe(() => {},
-        err => console.error(err)
+      .subscribe(() => {
+        this.toastr.success('Zmodyfikowano dane użytkownika');
+      },
+        err => this.toastr.error('Coś poszło nie tak')
       );
   }
 
